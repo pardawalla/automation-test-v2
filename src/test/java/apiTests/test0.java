@@ -78,20 +78,16 @@ public class test0 {
         System.out.println(respString);
         Assert.assertTrue(respString.contains(expectedCharityDescription));
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        // Reference:
-        // https://stackoverflow.com/questions/36519974/can-not-deserialize-instance-of-java-util-hashmap-out-of-start-array-token
-        List<Map<String, Object>> charities = mapper.readValue(respString,
-                new TypeReference<List<Map<String, Object>>>() {
-                });
-        System.out.println("charities is: " + charities);
+        // // Note required. Code to test JSON deserialisation/ 
+        // ObjectMapper mapper = new ObjectMapper();
+        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // // Reference:
+        // // https://stackoverflow.com/questions/36519974/can-not-deserialize-instance-of-java-util-hashmap-out-of-start-array-token
+        // List<Map<String, Object>> charities = mapper.readValue(respString,
+        //         new TypeReference<List<Map<String, Object>>>() {
+        //         });
+        // System.out.println("charities is: " + charities);
 
-        // for (String Description: charities.keySet()) {
-        // String key = Description.toString();
-        // String value = charities.get(Description).toString();
-        // System.out.println(key + "" + value);
-        // }
     }
 
     // References:
