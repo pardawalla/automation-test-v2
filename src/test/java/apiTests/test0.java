@@ -1,7 +1,6 @@
 package apiTests;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 import org.testng.Assert;
@@ -14,18 +13,13 @@ import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
-import org.apache.hc.core5.http.message.StatusLine;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.codec.http.HttpResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -112,8 +106,8 @@ public class test0 {
         String responseBody = EntityUtils.toString(httpResp.getEntity(), StandardCharsets.UTF_8);
 
 
-        System.out.println("\nStatu Code:" + statusCode + "\nreason phrase:" + statusReasonPhrase + "\n\n body:" + responseBody);
-        //System.out.println(resp.returnResponse().getCode());
+        System.out.println("\nStatus Code:" + statusCode + "\nreason phrase:" + statusReasonPhrase + "\n\n body:" + responseBody);
+        Assert.assertEquals(statusCode, 200);
 
     }
 

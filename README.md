@@ -38,6 +38,11 @@ Theorectially you should be able to run these tests on Windows/Linux/Mac using V
 - Cucumber: https://cucumber.io/docs/tools/general/
 - Visual Studio Extensions 
   - [Extension Pack for Java] (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+- Aapache HttpClient 5.2.1 API
+  - https://hc.apache.org/httpcomponents-client-5.2.x/index.html
+  - https://hc.apache.org/httpcomponents-client-5.2.x/current/httpclient5/apidocs/overview-summary.html
+- [Jackson v2.14.1] (https://github.com/FasterXML/jackson)
+
 
 
 ## References: 

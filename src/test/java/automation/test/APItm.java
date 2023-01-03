@@ -2,16 +2,11 @@ package automation.test;
 import java.io.IOException;
 
 import org.apache.hc.client5.http.ClientProtocolException;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
-import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
-import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 // import io.restassured.RestAssured.*;
 // import io.restassured.matcher.RestAssuredMatchers.*;
 // import org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
-import io.netty.handler.codec.http.HttpResponse;
 
 public class APItm {
 
