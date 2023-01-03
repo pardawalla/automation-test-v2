@@ -15,14 +15,14 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
+// import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+// import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.databind.SerializationFeature;
 
 
-import java.util.List;
-import java.util.Map;
+// import java.util.List;
+// import java.util.Map;
 
 public class test0 {
 
@@ -78,7 +78,7 @@ public class test0 {
         System.out.println(respString);
         Assert.assertTrue(respString.contains(expectedCharityDescription));
 
-        // // Note required. Code to test JSON deserialisation/ 
+        // // Not required. Code to test JSON deserialisation/ 
         // ObjectMapper mapper = new ObjectMapper();
         // mapper.enable(SerializationFeature.INDENT_OUTPUT);
         // // Reference:
