@@ -10,7 +10,7 @@ This project has two main set of tests that are currently working.
   - Send a post request, and verify that it was successful using httpbin.org
 
 ### Notes
-The initial aim here was to write these tests using Java, and Selenium. Preferably in BDD style using [Cucumber] (https://cucumber.io/docs/tools/general/). However, was unable to integrate Cucumber and was not able to write the tests in the BBD style. However, a feature file is there to give an example of what the BBD scenarios might have looked like. The issue was that for some reason I could not bind the scenario with the step definitions, and when trying to run the BBD style tests, I would get the error;
+The initial aim here was to write these tests using Java, and Selenium. Preferably in BDD style using [Cucumber](https://cucumber.io/docs/tools/general/). However, was unable to integrate Cucumber and was not able to write the tests in the BBD style. However, a feature file is there to give an example of what the BBD scenarios might have looked like. The issue was that for some reason I could not bind the scenario with the step definitions, and when trying to run the BBD style tests, I would get the error;
 ```
 Exception occured while running tests.
 java.lang.RuntimeException: No test found to run.
