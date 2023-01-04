@@ -18,8 +18,33 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Tests {
+public class searchUsedCars {
 
+       private String workingDir = System.getProperty("user.dir");
+       private String myChromeDriverPath = workingDir + "/src/test/resources/drivers/chromedriver";
+
+       // The tests currently verify against listing with id 3900249796. If this
+       // listing no longer exists please update the test data below appropriately
+       // with the updated listing and correct values for the data parameters.
+       // Test data for test(s): SearchUsedCars, ExistingListing
+       private String existingListingUrl = "https://www.trademe.co.nz/a/motors/cars/toyota/c-hr/listing/3855382911";
+       // Test data for test: SearchUsedCars
+       private String keywordsText = "NZU854";
+       // For the keywordsText variable, please only enter the number plate. As the keywordsText is set at the expected 
+       // Number plate for later tests. Using the number plate as the keyword ensures only one listing is returned. If multiple
+       // results are returned, it becomes harder to find the listing we are interested in as the listing order by the search
+       // cannot be always guaranteed.
+       private String makeText = "Toyota";
+       private String modelText = "C-HR";
+       private List<String> bodyStyleText = List.of(" RV/SUV ", " Coupe ");
+       private String searchResultHeader = "Toyota C-HR for sale";
+       // Test data for test(s): ExistingListing
+       private String numberPlateExpected = keywordsText;
+       private String kilometersExpected = "39,135";
+       private String bodyExpected = "RV/SUV";
+       private String seatsExpected = "5";
+
+       // Private variables
        private WebDriver driver;
        private WebDriverWait wait;
        private Duration timeoutInSeconds = Duration.ofSeconds(60);
@@ -39,8 +64,7 @@ public class Tests {
 
        @BeforeClass
        public void Setup() {
-              System.setProperty("webdriver.chrome.driver",
-                            "/Users/hussain/repos/java-se-cucumber-tests/drivers/chromedriver");
+              System.setProperty("webdriver.chrome.driver", myChromeDriverPath);
               driver = new ChromeDriver();
               driver.manage().window().maximize();
               wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -78,16 +102,6 @@ public class Tests {
               Assert.assertEquals(actualTitle, trademeMotorsSiteTitle);
 
        }
-
-       // Test data for test: SearchUsedCars
-       private String keywordsText = "blue";
-       private String makeText = "Honda";
-       private String modelText = "Civic";
-       private List<String> bodyStyleText = List.of(" Hatchback ", " Coupe ");
-       private String searchResultHeader = "Honda Civic for sale";
-
-       // Test data for test(s): SearchUsedCars, ExistingListing
-       private String existingListingUrl = "https://www.trademe.co.nz/a/motors/cars/honda/civic/listing/3900249796";
 
        @Test(priority = 2)
        public void SearchUsedCars() {
@@ -131,44 +145,68 @@ public class Tests {
               String headerText = driver.findElement(By.tagName("h1")).getText();
               Assert.assertEquals(headerText, searchResultHeader);
 
-              // Select the 3rd option
+              // Only one option should have been returned. So we select that.
               // TO-DO confirm results are always returned
-              driver.findElement(By.xpath("(//div[@class='o-card']//a)[3]")).click();
+              driver.findElement(By.xpath("(//div[@class='o-card']//a)[1]")).click();
               wait.until(ExpectedConditions.urlToBe(existingListingUrl));
               String currentUrl = driver.getCurrentUrl();
               Assert.assertEquals(currentUrl, existingListingUrl);
 
        }
 
-       // Used in Test(s): ExistingListing
-       private String numberPlateExpected = "MNE951";
-       private String kilometersExpected = "36,698km";
-       private String bodyExpected = "Hatchback";
-       private String seatsExpected = "5";
-
        @Test(priority = 3)
        public void ExistingListing() {
               driver.get(existingListingUrl);
 
               WebElement numberPlate = driver.findElement(By.xpath(("(//span[@class='o-tag__content']//div)[7]")));
-              String actualNumberPlate = numberPlate.getText();
+              String actualNumberPlate = numberPlate.getText().trim();
               System.out.println(actualNumberPlate);
+              // Using assert true, as sometimes the text contain the string "Number plate"
+              // and sometimes it doesn't :/
               Assert.assertTrue(actualNumberPlate.contains(numberPlateExpected));
 
               WebElement vehicleOdometer = driver.findElement(By.xpath(("(//span[@class='o-tag__content']//div)[1]")));
               String actualKilometers = vehicleOdometer.getText().trim();
               System.out.println(actualKilometers);
-              Assert.assertEquals(actualKilometers, kilometersExpected);
+              // Assert.assertTrue(actualKilometers.contains(kilometersExpected));
+              // The km text is always returned as a comma seperated number. When writing the test data, we can either
+              // enter the expected value as `39,000` or `39000` km. The code below removes the `,` from the number 
+              // string and than simply compares the number string without the `,` seperator.
+              String actualKmNum = actualKilometers.replaceAll("[^0-9]", "");
+              System.out.println("ACTUAL km number string: " + actualKmNum);
+              String expectedKmNum = kilometersExpected.replaceAll("[^0-9]", "");
+              System.out.println("EXPECTED km number string: " + expectedKmNum);
+              Assert.assertEquals(actualKmNum, expectedKmNum);
 
               WebElement body = driver.findElement(By.xpath(("(//span[@class='o-tag__content']//div)[2]")));
               String actualBody = body.getText().trim();
               System.out.println(actualBody);
-              Assert.assertEquals(actualBody, bodyExpected);
+              Assert.assertTrue(actualBody.contains(bodyExpected));
 
               WebElement seats = driver.findElement(By.xpath(("(//span[@class='o-tag__content']//div)[3]")));
               String actualSeats = seats.getText().trim();
               System.out.println(actualSeats);
-              Assert.assertEquals(actualSeats, seatsExpected);
+              Assert.assertTrue(actualSeats.contains(seatsExpected));
        }
 
+       // @Test
+       // public void extractKm(){
+       // // Reference: https://attacomsian.com/blog/java-extract-digits-from-string
+       // kilometersExpected = "100,103,001";
+       // String expectedKmNum = kilometersExpected.replaceAll("[^0-9]", "");
+       // System.out.println("\n\n\nEXPECTED the number is " + expectedKmNum);
+       // }
+
+       // @Test
+       // public void getWorkingDir(){
+       // // Reference:
+       // https://stackoverflow.com/questions/4032957/how-to-get-the-real-path-of-java-application-at-runtime
+       // String workingDir = System.getProperty("user.dir");
+       // System.out.println(workingDir);
+       // String myDriverPath = workingDir +
+       // "/src/test/resources/drivers/chromedriver";
+       // System.out.println("driver path is:" + myDriverPath);
+       // Assert.assertEquals("/Users/hussain/repos/automation-test-v2/automation-test-v2/src/test/resources/drivers/chromedriver",
+       // myDriverPath);
+       // }
 }

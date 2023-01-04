@@ -4,9 +4,9 @@ package cucumber.stepDefinitions;
 import io.cucumber.java.en.Given;
 
 public class SearchMotorsTest {
-    @Given("The browser is open")
+    @Given("I am on the TradeMe Motors search page")
     public void browserIsOpen() {
-        System.out.println("mapping exists");
+        System.out.println("mapping successful");
     }
 
 }

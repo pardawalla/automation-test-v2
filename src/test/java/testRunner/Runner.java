@@ -1,4 +1,4 @@
-package cucumber.testRunner;
+package testRunner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -6,9 +6,8 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 @CucumberOptions (
     features = "src/test/java/cucumber/features/SearchMotors.feature",
-    glue = {"tepDefinitions"},
+    glue = {"stepDefinitions.SearchMotorsTest"},
     snippets = SnippetType.CAMELCASE,
-    monochrome = true,
     dryRun = true
 )
 public class Runner extends AbstractTestNGCucumberTests {

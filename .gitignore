@@ -1,5 +1,8 @@
-# Mac OS generated files #
-######################
+# Downloaded Drivers
+test/resources/drivers/*
+!test/resources/drivers/.placeholder
+
+# Mac OS generated files 
 .DS_Store
 .DS_Store?
 Desktop.ini

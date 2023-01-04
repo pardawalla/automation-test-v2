@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 // import java.util.List;
 // import java.util.Map;
 
-public class test0 {
+public class sendRequests {
 
   
 
