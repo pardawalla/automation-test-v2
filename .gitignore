@@ -1,6 +1,6 @@
 # Downloaded Drivers
-test/resources/drivers/*
-!test/resources/drivers/.placeholder
+src/test/resources/drivers/*
+!src/test/resources/drivers/.placeholder
 
 # Mac OS generated files 
 .DS_Store
