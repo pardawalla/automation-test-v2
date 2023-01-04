@@ -26,7 +26,7 @@ Initially for API tests tried to use the [Rest-assured](https://rest-assured.io/
 
 
 ## To run the tests 
-- Download the appropriate version of the ChromeDriver, (based on your OS and Chrome ver), from [here](https://chromedriver.chromium.org/downloads), and place it the `../src/test/resources/drivers/` folder. 
+- Download the appropriate version of the ChromeDriver, (based on your OS and Chrome ver), from [here](https://chromedriver.chromium.org/downloads), and place it the `../src/test/resources/drivers/` folder. Please ensure the name of the dirver is `chromedriver`, and not `chromedriver.exe` etc. 
 - Check the listing `https://www.trademe.co.nz/a/motors/cars/toyota/c-hr/listing/3855382911` still exists. If not then choose another listing and update the test data as appropriate in `../src/test/java/automation/test/searchUsedCars.java` file.
 
 
