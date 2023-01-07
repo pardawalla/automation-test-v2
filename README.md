@@ -3,7 +3,7 @@
 ## Overview
 This project has two main set of tests that are currently working.
 - ***Web UI tests:*** found in src/test/java/automation/test/searchUsedCars.java. 
-  - The tests here checkt that from the TradeMe website, `https://api.tmsandbox.co.nz`, you can search for an existing used cars listing, select the listing from the search result and verify `Number plate`, `Kilometers`, `Body` and `Seats` for the listing. 
+  - The tests here check that from the TradeMe website, `https://trademe.co.nz`, you can search for an existing used cars listing, select the listing from the search result and verify `Number plate`, `Kilometers`, `Body` and `Seats` for the listing. 
   - Currently only supports the Chrome Browser
 - ***API tests:*** found in src/test/java/apiTests/sendRequests.java:
   - Using the TradeMe Sandbox environment retrieve a list of charities, and confirm that `St John` is included in the list.
